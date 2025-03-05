@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:starving_shopping_flutter_app/shared/examples/screens/custom_card_icon_screen.dart';
+import 'package:starving_shopping_flutter_app/shared/examples/screens/screens.dart';
 
-typedef ItemExample = ({String name, int idItem});
+enum ItemExampleEnum { customCardIcon, simpleCard }
+
+typedef ItemExample = ({String name, ItemExampleEnum idItem});
 
 class ExamplesScreen extends StatelessWidget {
   const ExamplesScreen({super.key});
@@ -10,7 +12,14 @@ class ExamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemExampleList = <ItemExample>[];
-    itemExampleList.add((name: 'Custom Card Icon', idItem: 1));
+    itemExampleList.add((
+      name: 'Custom Card Icon',
+      idItem: ItemExampleEnum.customCardIcon,
+    ));
+    itemExampleList.add((
+      name: 'Simple Card',
+      idItem: ItemExampleEnum.simpleCard,
+    ));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Examples')),
@@ -22,20 +31,20 @@ class ExamplesScreen extends StatelessWidget {
             title: Text(item.name),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
-              Widget? screen;
+              Widget screen;
               switch (item.idItem) {
-                case 1:
+                case ItemExampleEnum.customCardIcon:
                   screen = const CustomCardIconScreen();
                   break;
-                default:
+                case ItemExampleEnum.simpleCard:
+                  screen = const SimpleCardScreen();
+                  break;
               }
 
-              if (screen != null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => screen!),
-                );
-              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => screen),
+              );
             },
           );
         },

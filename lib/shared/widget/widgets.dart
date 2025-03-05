@@ -1,2 +1,3 @@
 export 'custom_card_icon.dart';
-export 'transparent_simple_card.dart';
+export 'paragraph_card.dart';
+export 'dynamic_card.dart';

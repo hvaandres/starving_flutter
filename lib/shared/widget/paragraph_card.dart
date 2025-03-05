@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TransparentSimpleCard extends StatelessWidget {
+class ParagraphCard extends StatelessWidget {
   final String? title;
   final String? description;
 
-  const TransparentSimpleCard({super.key, this.title, this.description});
+  const ParagraphCard({super.key, this.title, this.description});
 
   @override
   Widget build(BuildContext context) {

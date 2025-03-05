@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:starving_shopping_flutter_app/shared/examples/screens/screens.dart';
 
-enum ItemExampleEnum { customCardIcon, simpleCard, dynamicCard }
+enum ItemExampleEnum { customCardIcon, simpleCard, dynamicCard, skeletonDynamicContainer }
 
 typedef ItemExample = ({String name, ItemExampleEnum idItem});
 
@@ -23,6 +23,10 @@ class ExamplesScreen extends StatelessWidget {
     itemExampleList.add((
       name: 'Dynamic Card',
       idItem: ItemExampleEnum.dynamicCard,
+    ));
+    itemExampleList.add((
+      name: 'Skeleton Dynamic Container',
+      idItem: ItemExampleEnum.skeletonDynamicContainer,
     ));
 
     return Scaffold(
@@ -45,6 +49,9 @@ class ExamplesScreen extends StatelessWidget {
                   break;
                 case ItemExampleEnum.dynamicCard:
                   screen = const DynamicCardScreen();
+                  break;
+                case ItemExampleEnum.skeletonDynamicContainer:
+                  screen = const SkeletonDynamicContainerScreen();
                   break;
               }
 

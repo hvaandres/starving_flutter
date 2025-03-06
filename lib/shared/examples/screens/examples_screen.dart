@@ -8,6 +8,7 @@ enum ItemExampleEnum {
   dynamicCard,
   skeletonDynamicContainer,
   simpleFormBottomsheetScreen,
+  customEditText,
 }
 
 typedef ItemExample = ({String name, ItemExampleEnum idItem});
@@ -38,6 +39,11 @@ class ExamplesScreen extends StatelessWidget {
       name: 'Simple Form Bottonsheet',
       idItem: ItemExampleEnum.simpleFormBottomsheetScreen,
     ));
+    itemExampleList.add((
+      name: 'Custom EditText',
+      idItem: ItemExampleEnum.customEditText,
+    ));
+
 
     return Scaffold(
       appBar: AppBar(title: const Text('Examples')),
@@ -65,6 +71,9 @@ class ExamplesScreen extends StatelessWidget {
                   break;
                 case ItemExampleEnum.simpleFormBottomsheetScreen:
                   screen = const SimpleFormBottomsheetScreen();
+                  break;
+                case ItemExampleEnum.customEditText:
+                  screen = const CustomEditTextScreen();
                   break;
               }
 

@@ -23,6 +23,7 @@ class _SkeletonDynamicContainerScreenState extends State<SkeletonDynamicContaine
       ),
       body: SkeletonDynamicContainer(
         isVisibleSkeleton: isSkeletonVisible,
+        descriptionText: 'Before you go, double-check your list! Swipe right to remove unpurchased items - they\'ll stay in the items tab.',
         topWidget: ParagraphCard(
           title: 'My Groceries',
           description: 'Never forget what you need for the week again!',

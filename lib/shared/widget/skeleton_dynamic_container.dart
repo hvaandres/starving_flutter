@@ -7,9 +7,12 @@ class SkeletonDynamicContainer extends StatelessWidget {
   final Widget? middleWidget;
   final Widget? bottomWidget;
 
+  final String descriptionText;
+
   const SkeletonDynamicContainer({
     super.key,
     required this.isVisibleSkeleton,
+    required this.descriptionText,
     this.topWidget,
     this.middleWidget,
     this.bottomWidget,
@@ -17,7 +20,6 @@ class SkeletonDynamicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
 
@@ -28,24 +30,20 @@ class SkeletonDynamicContainer extends StatelessWidget {
         (!isVisibleSkeleton && middleWidget != null)
             ? Expanded(child: middleWidget!)
             : Expanded(
-
               child: Column(
                 children: [
                   SizedBox(
-                    height: size.height * 0.25,
+                    height: size.height * 0.35,
                     child: Image(
-                      image: AssetImage('assets/images/img_meet.png'),
+                      image: AssetImage('assets/images/today_screen_resource.png'),
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * 0.05,
-                  ),
+                  SizedBox(height: size.height * 0.05),
                   DynamicCard(
-                    description: 'Begin by adding groceries you think would be perfect for the week!',
-                  )
+                    description: descriptionText,
+                  ),
                 ],
               ),
-
             ),
 
         if (bottomWidget != null) bottomWidget!,

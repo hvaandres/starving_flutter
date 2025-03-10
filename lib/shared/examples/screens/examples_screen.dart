@@ -9,6 +9,7 @@ enum ItemExampleEnum {
   skeletonDynamicContainer,
   simpleFormBottomsheetScreen,
   customEditText,
+  customAssetImage,
 }
 
 typedef ItemExample = ({String name, ItemExampleEnum idItem});
@@ -43,7 +44,10 @@ class ExamplesScreen extends StatelessWidget {
       name: 'Custom EditText',
       idItem: ItemExampleEnum.customEditText,
     ));
-
+    itemExampleList.add((
+      name: 'Custom AssetImage',
+      idItem: ItemExampleEnum.customAssetImage,
+    ));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Examples')),
@@ -74,6 +78,9 @@ class ExamplesScreen extends StatelessWidget {
                   break;
                 case ItemExampleEnum.customEditText:
                   screen = const CustomEditTextScreen();
+                  break;
+                case ItemExampleEnum.customAssetImage:
+                  screen = const CustomAssetImageScreen();
                   break;
               }
 

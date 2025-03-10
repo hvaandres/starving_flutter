@@ -1,3 +1,4 @@
+export 'custom_asset_image.dart';
 export 'custom_card_icon.dart';
 export 'custom_edit_text.dart';
 export 'dynamic_card.dart';

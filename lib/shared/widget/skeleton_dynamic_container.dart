@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starving_shopping_flutter_app/shared/widget/dynamic_card.dart';
+import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart';
 
 class SkeletonDynamicContainer extends StatelessWidget {
   final bool isVisibleSkeleton;
@@ -32,16 +32,15 @@ class SkeletonDynamicContainer extends StatelessWidget {
             : Expanded(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: size.height * 0.35,
-                    child: Image(
-                      image: AssetImage('assets/images/today_screen_resource.png'),
-                    ),
+                  CustomAssetImage(
+                    pathImage: 'assets/images/today_screen_resource.png',
                   ),
                   SizedBox(height: size.height * 0.05),
-                  DynamicCard(
-                    description: descriptionText,
-                  ),
+
+                  if (descriptionText.isNotEmpty)
+                    DynamicCard(
+                      description: descriptionText,
+                    ),
                 ],
               ),
             ),

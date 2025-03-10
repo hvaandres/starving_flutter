@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart';
 
 class SkeletonDynamicContainer extends StatelessWidget {
@@ -33,7 +34,7 @@ class SkeletonDynamicContainer extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAssetImage(
-                    pathImage: 'assets/images/today_screen_resource.png',
+                    pathImage: getFullPathAsset('today_screen_resource.png'),
                   ),
                   SizedBox(height: size.height * 0.05),
 

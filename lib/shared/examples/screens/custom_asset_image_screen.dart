@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart' show CustomAssetImage;
 
 class CustomAssetImageScreen extends StatelessWidget {
@@ -13,14 +14,14 @@ class CustomAssetImageScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAssetImage(
-              pathImage: 'assets/images/today_screen_resource.png',
+              pathImage: getFullPathAsset('today_screen_resource.png'),
             ),
             SizedBox(
               width: double.infinity,
               height: 10,
             ),
             CustomAssetImage(
-              pathImage: 'assets/images/reminder_screen_resource.png',
+              pathImage: getFullPathAsset('reminder_screen_resource.png'),
             ),
           ],
         ),

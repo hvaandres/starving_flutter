@@ -13,7 +13,7 @@ class CustomAssetImage extends StatelessWidget {
     final size = mediaQuery.size;
 
     return SizedBox(
-      height: size.height * 0.4,
+      height: size.height * 0.35,
       child: Image(
         image: AssetImage(pathImage),
       ),

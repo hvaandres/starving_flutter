@@ -7,6 +7,7 @@ class SkeletonDynamicContainer extends StatelessWidget {
   final Widget? topWidget;
   final Widget? middleWidget;
   final Widget? bottomWidget;
+  final String? nameSkeletonImage;
 
   final String descriptionText;
 
@@ -17,6 +18,7 @@ class SkeletonDynamicContainer extends StatelessWidget {
     this.topWidget,
     this.middleWidget,
     this.bottomWidget,
+    this.nameSkeletonImage,
   });
 
   @override
@@ -34,14 +36,12 @@ class SkeletonDynamicContainer extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAssetImage(
-                    pathImage: getFullPathAsset('today_screen_resource.png'),
+                    pathImage: getFullPathAsset(nameSkeletonImage ?? 'today_screen_resource.png'),
                   ),
                   SizedBox(height: size.height * 0.05),
 
                   if (descriptionText.isNotEmpty)
-                    DynamicCard(
-                      description: descriptionText,
-                    ),
+                    DynamicCard(description: descriptionText),
                 ],
               ),
             ),

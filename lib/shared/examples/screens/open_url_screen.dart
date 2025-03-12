@@ -7,6 +7,9 @@ class OpenUrlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Open url'),
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: _launchUrl,

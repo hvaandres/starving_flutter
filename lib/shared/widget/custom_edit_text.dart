@@ -8,12 +8,34 @@ class CustomEditText extends StatelessWidget {
     required this.textController
   });
 
+  InputDecoration customInputDecoration(String hintText) {
+  return InputDecoration(
+    hintText: hintText,
+    hintStyle: TextStyle(color: Colors.grey[600], fontSize: 14),
+    filled: true,
+    fillColor: Colors.white,
+    contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide(color: Colors.blue, width: 2),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      //! set design to EditText
       child: TextField(
+        decoration: customInputDecoration("Enter item name"),
         controller: textController,
       ),
     );

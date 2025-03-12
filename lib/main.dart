@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'package:starving_shopping_flutter_app/config/constant/environment.dart';
+import 'package:starving_shopping_flutter_app/presentation/screens/prod_screens.dart';
+import 'package:starving_shopping_flutter_app/shared/examples/screens/examples_screen.dart';
+
+void main() async {
+  await Environment.initEnvironment();
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,15 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      home:
+          Environment.wantSeeExamples
+              ? const MainScreen()
+              : const ExamplesScreen(),
     );
   }
 }

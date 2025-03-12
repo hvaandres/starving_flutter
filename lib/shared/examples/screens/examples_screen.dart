@@ -11,6 +11,7 @@ enum ItemExampleEnum {
   customEditText,
   customAssetImage,
   cardOptions,
+  openUrl,
 }
 
 typedef ItemExample = ({String name, ItemExampleEnum idItem});
@@ -53,6 +54,7 @@ class ExamplesScreen extends StatelessWidget {
       name: 'Card Options',
       idItem: ItemExampleEnum.cardOptions,
     ));
+    itemExampleList.add((name: 'Open Url', idItem: ItemExampleEnum.openUrl));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Examples')),
@@ -89,6 +91,9 @@ class ExamplesScreen extends StatelessWidget {
                   break;
                 case ItemExampleEnum.cardOptions:
                   screen = const CardOptionsScreen();
+                  break;
+                case ItemExampleEnum.openUrl:
+                  screen = const OpenUrlScreen();
                   break;
               }
 

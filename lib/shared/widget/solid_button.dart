@@ -4,12 +4,14 @@ class SolidButton extends StatelessWidget {
 
   final String labelButton;
   final Color? colorButton;
+  final Color? textColor;
   final GestureTapCallback? onTap;
 
   const SolidButton({
     super.key,
     required this.labelButton,
     this.colorButton,
+    this.textColor,
     this.onTap,
   });
 
@@ -31,7 +33,7 @@ class SolidButton extends StatelessWidget {
                 child: Text(
                   labelButton,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: textColor,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),

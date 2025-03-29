@@ -34,6 +34,7 @@ class SimpleFormBottomsheetScreen extends StatelessWidget {
                       SolidButton(
                         labelButton: 'Add',
                         colorButton: Colors.black,
+                        textColor: Colors.white,
                         onTap:() {
                           Navigator.pop(context);
                         },

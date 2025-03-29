@@ -10,6 +10,8 @@ class SkeletonDynamicContainer extends StatelessWidget {
   final String? nameSkeletonImage;
 
   final String descriptionText;
+  final Color dynamicCardColor;
+  final Color containerColor;
 
   const SkeletonDynamicContainer({
     super.key,
@@ -19,6 +21,8 @@ class SkeletonDynamicContainer extends StatelessWidget {
     this.middleWidget,
     this.bottomWidget,
     this.nameSkeletonImage,
+    required this.dynamicCardColor,
+    required this.containerColor,
   });
 
   @override
@@ -26,28 +30,34 @@ class SkeletonDynamicContainer extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
 
-    return Column(
-      children: [
-        if (topWidget != null) topWidget!,
-
-        (!isVisibleSkeleton && middleWidget != null)
-            ? Expanded(child: middleWidget!)
-            : Expanded(
-              child: Column(
-                children: [
-                  CustomAssetImage(
-                    pathImage: getFullPathAsset(nameSkeletonImage ?? 'today_screen_resource.png'),
-                  ),
-                  SizedBox(height: size.height * 0.05),
-
-                  if (descriptionText.isNotEmpty)
-                    DynamicCard(description: descriptionText),
-                ],
+    return Container(
+      color: containerColor,
+      child: Column(
+        children: [
+          if (topWidget != null) topWidget!,
+      
+          (!isVisibleSkeleton && middleWidget != null)
+              ? Expanded(child: middleWidget!)
+              : Expanded(
+                child: Column(
+                  children: [
+                    CustomAssetImage(
+                      pathImage: getFullPathAsset(nameSkeletonImage ?? 'today_screen_resource.png'),
+                    ),
+                    SizedBox(height: size.height * 0.05),
+      
+                    if (descriptionText.isNotEmpty)
+                      DynamicCard(
+                        description: descriptionText,
+                        cardColor: dynamicCardColor,
+                      ),
+                  ],
+                ),
               ),
-            ),
-
-        if (bottomWidget != null) bottomWidget!,
-      ],
+      
+          if (bottomWidget != null) bottomWidget!,
+        ],
+      ),
     );
   }
 }

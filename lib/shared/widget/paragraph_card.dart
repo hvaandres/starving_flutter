@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ParagraphCard extends StatelessWidget {
   final String? title;
   final String? description;
+  final Color? backgroundColor;
+  final Color? paragraphColor;
 
   final double verticalPadding;
   final double horizontalPadding;
@@ -11,6 +13,8 @@ class ParagraphCard extends StatelessWidget {
     super.key,
     this.title,
     this.description,
+    this.backgroundColor,
+    this.paragraphColor,
     this.verticalPadding = 8,
     this.horizontalPadding = 16,
   });
@@ -18,7 +22,7 @@ class ParagraphCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: backgroundColor ?? Colors.white,
       elevation: 0,
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -31,7 +35,11 @@ class ParagraphCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 title ?? 'Daily Reminders',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: paragraphColor ?? Colors.black,
+                ),
               ),
             ),
             Text(

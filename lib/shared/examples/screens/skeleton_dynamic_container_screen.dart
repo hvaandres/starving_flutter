@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starving_shopping_flutter_app/config/theme/base_colors.dart';
 
 import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart'
     show DynamicCard, ParagraphCard, SkeletonDynamicContainer, SolidButton;
@@ -22,11 +23,15 @@ class _SkeletonDynamicContainerScreenState extends State<SkeletonDynamicContaine
         title: const Text('Skeleton Dynamic Container'),
       ),
       body: SkeletonDynamicContainer(
+        containerColor: Colors.white,
+        dynamicCardColor: BaseColors.backgroundColorLight,
         isVisibleSkeleton: isSkeletonVisible,
         descriptionText: 'Before you go, double-check your list! Swipe right to remove unpurchased items - they\'ll stay in the items tab.',
         topWidget: ParagraphCard(
           title: 'My Groceries',
           description: 'Never forget what you need for the week again!',
+          backgroundColor: Colors.white,
+          paragraphColor: Colors.black,
         ),
 
         middleWidget: MiddleWidgetForScreen(),
@@ -34,6 +39,7 @@ class _SkeletonDynamicContainerScreenState extends State<SkeletonDynamicContaine
         bottomWidget: SolidButton(
           labelButton: isSkeletonVisible ? 'Hide Skeleton' : 'Show Skeleton',
           colorButton: Colors.black,
+          textColor: Colors.white,
           onTap: () {
             setState(() {
               isSkeletonVisible = !isSkeletonVisible;

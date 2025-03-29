@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starving_shopping_flutter_app/config/theme/base_colors.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/models/models.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/card_options.dart';
@@ -16,6 +17,11 @@ class CardOptionsScreen extends StatelessWidget {
           CardOptions(
             title: 'App options',
             iconTitle: Icons.settings,
+            backgroundColor: BaseColors.backgroundColorLight,
+            titleColor: Colors.black,
+            iconTitleColor: Colors.black,
+            itemColor: Colors.black,
+            forwardColor: Colors.black,
             items: [
               ItemOption(
                 name: 'Rate on App Store', // ! put app store o play store
@@ -49,6 +55,11 @@ class CardOptionsScreen extends StatelessWidget {
           CardOptions(
             title: 'Connect',
             iconTitle: Icons.group,
+            backgroundColor: BaseColors.backgroundColorLight,
+            titleColor: Colors.black,
+            iconTitleColor: Colors.black,
+            itemColor: Colors.black,
+            forwardColor: Colors.black,
             items: [
               ItemOption(
                 name: 'Join Space Creators',

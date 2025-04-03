@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:starving_shopping_flutter_app/domain/datasource/local_storage_datasource.dart';
-import 'package:starving_shopping_flutter_app/domain/grocery.dart';
+import 'package:starving_shopping_flutter_app/domain/entity/grocery.dart';
 
 class IsarDatasource extends LocalStorageDatasource {
   late Future<Isar> db;
@@ -18,11 +18,12 @@ class IsarDatasource extends LocalStorageDatasource {
   }
   
   @override
-  Future<void> putGrocery(Grocery grocery) async {
+  Future<int?> putGrocery(Grocery grocery) async {
     final isar = await db;
-    isar.writeTxnSync(
-      () => isar.groceries.putSync(grocery)
-    );
+    return await isar.writeTxn(() async {
+      final id = await isar.groceries.put(grocery);
+      return id;
+    });
   }
 
   Future<Isar> _openDB() async {

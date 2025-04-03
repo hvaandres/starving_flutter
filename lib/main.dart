@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:starving_shopping_flutter_app/config/constant/environment.dart';
 import 'package:starving_shopping_flutter_app/presentation/screens/main_screen.dart';
@@ -7,7 +8,11 @@ import 'package:starving_shopping_flutter_app/shared/examples/screens/examples_s
 void main() async {
   await Environment.initEnvironment();
 
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

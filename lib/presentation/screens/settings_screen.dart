@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starving_shopping_flutter_app/config/theme/color_manager.dart';
+
+import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/models/models.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/card_options.dart';
@@ -9,33 +10,28 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorManager = ColorManager(context: context);
-    final primaryBackgroundColor = colorManager.primaryBackgroundColor();
-    final primaryContrastColor = colorManager.primaryContrastColor();
-    final backgroundSecondaryColor = colorManager.backgroundSecondaryColor();
-
     return Scaffold(
-      backgroundColor: primaryBackgroundColor,
+      backgroundColor: context.primaryBackgroundColor,
       appBar: AppBar(
         title: Text(
           'Settings',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
-            color: primaryContrastColor,
+            color: context.primaryContrastColor,
           ),
         ),
-        backgroundColor: primaryBackgroundColor,
+        backgroundColor: context.primaryBackgroundColor,
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: primaryBackgroundColor,
+          color: context.primaryBackgroundColor,
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Card(
-                  color: backgroundSecondaryColor,
+                  color: context.backgroundSecondaryColor,
                   elevation: 0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -63,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: primaryContrastColor
+                            color: context.primaryContrastColor
                           ),
                         ),
                         SizedBox(height: 8),
@@ -71,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
                           'Software engineer passionate about building innovative apps and teaching others.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: colorManager.textSecondaryTextColor()
+                            color: context.secondaryTextColor
                           ),
                         ),
                         SizedBox(height: 8),
@@ -105,11 +101,11 @@ class SettingsScreen extends StatelessWidget {
               CardOptions(
                 title: 'App options',
                 iconTitle: Icons.settings,
-                backgroundColor: backgroundSecondaryColor,
-                titleColor: primaryContrastColor,
-                iconTitleColor: primaryContrastColor,
-                itemColor: primaryContrastColor,
-                forwardColor: primaryContrastColor,
+                backgroundColor: context.backgroundSecondaryColor,
+                titleColor: context.primaryContrastColor,
+                iconTitleColor: context.primaryContrastColor,
+                itemColor: context.primaryContrastColor,
+                forwardColor: context.primaryContrastColor,
                 items: [
                   ItemOption(
                     name: 'Rate on App Store', // ! put app store o play store
@@ -143,11 +139,11 @@ class SettingsScreen extends StatelessWidget {
               CardOptions(
                 title: 'Connect',
                 iconTitle: Icons.group,
-                backgroundColor: backgroundSecondaryColor,
-                titleColor: primaryContrastColor,
-                iconTitleColor: primaryContrastColor,
-                itemColor: primaryContrastColor,
-                forwardColor: primaryContrastColor,
+                backgroundColor: context.backgroundSecondaryColor,
+                titleColor: context.primaryContrastColor,
+                iconTitleColor: context.primaryContrastColor,
+                itemColor: context.primaryContrastColor,
+                forwardColor: context.primaryContrastColor,
                 items: [
                   ItemOption(
                     name: 'Join Space Creators',

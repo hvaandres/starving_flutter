@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starving_shopping_flutter_app/config/theme/color_manager.dart';
+
+import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
 import 'package:starving_shopping_flutter_app/presentation/screens/prod_screens.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 
@@ -22,11 +23,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorManager = ColorManager(context: context);
-    final primaryBackgroundColor = colorManager.primaryBackgroundColor();
-
     return Scaffold(
-      backgroundColor: primaryBackgroundColor,
+      backgroundColor: context.primaryBackgroundColor,
       body: SafeArea(child: _screens[_selectedOption]),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -54,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 14,
         unselectedFontSize: 14,
-        backgroundColor: primaryBackgroundColor,
+        backgroundColor: context.primaryBackgroundColor,
         onTap: (value) {
           setState(() {
             _selectedOption = value;

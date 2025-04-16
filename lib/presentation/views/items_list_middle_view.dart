@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:starving_shopping_flutter_app/domain/entity/grocery.dart';
 
-class ItemsListMiddleScreen extends StatelessWidget {
+class ItemsListMiddleView extends StatelessWidget {
 
   final List<Grocery> groceryList;
 
-  const ItemsListMiddleScreen({
+  const ItemsListMiddleView({
     super.key,
     required this.groceryList,
   });

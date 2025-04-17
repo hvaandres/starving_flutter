@@ -15,7 +15,6 @@ class ItemsScreen extends ConsumerStatefulWidget {
 
 class ItemsScreenState extends ConsumerState<ItemsScreen>
     with AutomaticKeepAliveClientMixin {
-
   @override
   void initState() {
     super.initState();
@@ -27,15 +26,9 @@ class ItemsScreenState extends ConsumerState<ItemsScreen>
     super.build(context);
 
     final groceriesList = ref.watch(groceryProvider);
-    final isVisibleSkeleton = groceriesList.isEmpty;
 
     return SkeletonDynamicContainer(
       containerColor: context.primaryBackgroundColor,
-      dynamicCardColor: context.backgroundSecondaryColor,
-      isVisibleSkeleton: isVisibleSkeleton,
-      descriptionText:
-          'Star by adding the groceries you\'ll need for the week, and be sure to select the items on this screen to move them to the Today\'s tab!',
-      nameSkeletonImage: 'items_screen_resource.png',
       topWidget: ParagraphCard(
         title: 'My groceries',
         description:
@@ -43,18 +36,22 @@ class ItemsScreenState extends ConsumerState<ItemsScreen>
         backgroundColor: context.primaryBackgroundColor,
         paragraphColor: context.primaryContrastColor,
       ),
-      middleWidget: ItemsListMiddleScreen(
-        groceryList: groceriesList,
-      ),
+      middleWidget:
+          groceriesList.isNotEmpty
+              ? ItemsListMiddleScreen(groceryList: groceriesList)
+              : EmptyStateDynamic(
+                nameSkeletonImage: 'items_screen_resource.png',
+                descriptionText:
+                    'Star by adding the groceries you\'ll need for the week, and be sure to select the items on this screen to move them to the Today\'s tab!',
+                dynamicCardColor: context.backgroundSecondaryColor,
+              ),
       bottomWidget: SolidButton(
         labelButton: 'Add new item',
         colorButton: context.primaryContrastColor,
         textColor: context.primaryBackgroundColor,
         onTap: () {
           //! open bottomsheet
-          ref.watch(groceryProvider.notifier).registerCard(
-            nameGrocery: 'new'
-          );
+          ref.watch(groceryProvider.notifier).registerCard(nameGrocery: 'new');
         },
       ),
     );

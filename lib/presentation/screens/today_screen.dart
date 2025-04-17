@@ -10,16 +10,18 @@ class TodayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SkeletonDynamicContainer(
       containerColor: context.primaryBackgroundColor,
-      dynamicCardColor: context.backgroundSecondaryColor,
-      isVisibleSkeleton: true,
-      descriptionText:
-          'Take a little of you time to check and review your grocery list!',
       topWidget: ParagraphCard(
         title: 'My groceries',
         description:
             'Before you go, double-check your list! Swipe right to remove unpurchased items - they\'ll stay in the items tab.',
         backgroundColor: context.primaryBackgroundColor,
         paragraphColor: context.primaryContrastColor,
+      ),
+      middleWidget: EmptyStateDynamic(
+        nameSkeletonImage: 'today_screen_resource.png',
+        descriptionText:
+            'Take a little of you time to check and review your grocery list!',
+        dynamicCardColor: context.backgroundSecondaryColor,
       ),
       bottomWidget: SolidButton(
         labelButton: 'Log',

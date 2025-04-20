@@ -23,14 +23,14 @@ class _SkeletonDynamicContainerScreenState extends State<SkeletonDynamicContaine
       ),
       body: SkeletonDynamicContainer(
         containerColor: Colors.white,
-        topWidget: ParagraphCard(
+        topWidget: const ParagraphCard(
           title: 'My Groceries',
           description: 'Never forget what you need for the week again!',
           backgroundColor: Colors.white,
           paragraphColor: Colors.black,
         ),
 
-        middleWidget: MiddleWidgetForScreen(),
+        middleWidget: const MiddleWidgetForScreen(),
 
         bottomWidget: SolidButton(
           labelButton: isSkeletonVisible ? 'Hide Skeleton' : 'Show Skeleton',
@@ -44,7 +44,7 @@ class _SkeletonDynamicContainerScreenState extends State<SkeletonDynamicContaine
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.note), label: 'Today'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -60,7 +60,7 @@ class MiddleWidgetForScreen extends StatelessWidget {
   const MiddleWidgetForScreen({super.key});
 
   List<DynamicCard> getDynamicCards() {
-    return [
+    return const [
       DynamicCard(
         icon: Icons.notifications_active,
         title: 'Current schedule',

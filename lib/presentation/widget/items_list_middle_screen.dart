@@ -21,7 +21,7 @@ class ItemsListMiddleScreen extends StatelessWidget {
         return ListTile(
           title: Text(
             grocery.name,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),

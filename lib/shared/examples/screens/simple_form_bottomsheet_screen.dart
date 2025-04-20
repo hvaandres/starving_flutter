@@ -9,7 +9,7 @@ class SimpleFormBottomsheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Simple Form Bottomsheet"),
+        title: const Text("Simple Form Bottomsheet"),
       ),
       body: Center(
         child: ElevatedButton(
@@ -18,7 +18,7 @@ class SimpleFormBottomsheetScreen extends StatelessWidget {
             showModalBottomSheet(
               isScrollControlled: true,
               context: context,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
               builder: (BuildContext context) {
@@ -27,8 +27,8 @@ class SimpleFormBottomsheetScreen extends StatelessWidget {
                   child: Wrap(
                     children: [
                       // WIP replace with EditText
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.0),
                         child: Text('What groceries do you need to purchased'),
                       ),
                       SolidButton(

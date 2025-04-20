@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         CircleAvatar(
                           backgroundColor: Colors.teal,
                           radius: 38,
@@ -62,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                             color: context.primaryContrastColor
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           'Software engineer passionate about building innovative apps and teaching others.',
                           textAlign: TextAlign.center,
@@ -70,12 +70,12 @@ class SettingsScreen extends StatelessWidget {
                             color: context.secondaryTextColor
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         GestureDetector(
                           onTap: () {
                             
                           },
-                          child: Row(
+                          child: const Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -91,7 +91,7 @@ class SettingsScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),

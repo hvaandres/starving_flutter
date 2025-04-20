@@ -14,14 +14,14 @@ class CustomEditText extends StatelessWidget {
     hintStyle: TextStyle(color: Colors.grey[600], fontSize: 14),
     filled: true,
     fillColor: Colors.white,
-    contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
       borderSide: BorderSide(color: Colors.grey[300]!, width: 1.5),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(color: Colors.blue, width: 2),
+      borderSide: const BorderSide(color: Colors.blue, width: 2),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),

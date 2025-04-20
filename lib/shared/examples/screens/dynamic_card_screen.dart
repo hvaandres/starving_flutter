@@ -6,7 +6,7 @@ class DynamicCardScreen extends StatelessWidget {
 
   List<DynamicCard> getDynamicCards() {
     return [
-      DynamicCard(
+      const DynamicCard(
         icon: Icons.notifications_active,
         title: 'Current schedule',
         subtitle: 'Daily reminder scheduled for 8:00 AM',
@@ -14,14 +14,14 @@ class DynamicCardScreen extends StatelessWidget {
         description: 'Last modified: 1 second ago',
       ),
 
-      DynamicCard(
+      const DynamicCard(
         icon: Icons.notifications_active,
         title: 'Current schedule',
         subtitle: 'Daily reminder scheduled for 8:00 AM',
         description: 'Last modified: 1 second ago',
       ),
 
-      DynamicCard(
+      const DynamicCard(
         title: 'Current schedule',
         subtitle: 'Daily reminder scheduled for 8:00 AM',
         status: 'Pending',
@@ -29,19 +29,19 @@ class DynamicCardScreen extends StatelessWidget {
         statusColor: Colors.orange,
       ),
       
-      DynamicCard(
+      const DynamicCard(
         title: 'Current schedule',
         subtitle: 'Daily reminder scheduled for 8:00 AM',
         status: 'Warning',
         statusColor: Colors.red,
       ),
 
-      DynamicCard(
+      const DynamicCard(
         title: 'Current schedule',
         subtitle: 'Daily reminder scheduled for 8:00 AM',
       ),
 
-      DynamicCard(
+      const DynamicCard(
         subtitle: 'Daily reminder scheduled for 8:00 AM',
         description: 'Last modified: 1 second ago',
       ),

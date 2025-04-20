@@ -16,7 +16,7 @@ class CustomAssetImageScreen extends StatelessWidget {
             CustomAssetImage(
               pathImage: getFullPathAsset('today_screen_resource.png'),
             ),
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               height: 10,
             ),

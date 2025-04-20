@@ -64,7 +64,7 @@ class ExamplesScreen extends StatelessWidget {
           final item = itemExampleList[index];
           return ListTile(
             title: Text(item.name),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
               Widget screen;
               switch (item.idItem) {

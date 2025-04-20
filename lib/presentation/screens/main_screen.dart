@@ -15,10 +15,10 @@ class _MainScreenState extends State<MainScreen> {
   var _selectedOption = 0;
 
   final List<Widget> _screens = [
-    TodayScreen(),
-    ItemsScreen(),
-    RemindersScreen(),
-    SettingsScreen(),
+    const TodayScreen(),
+    const ItemsScreen(),
+    const RemindersScreen(),
+    const SettingsScreen(),
   ];
 
   @override

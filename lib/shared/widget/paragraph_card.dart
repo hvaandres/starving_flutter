@@ -44,7 +44,7 @@ class ParagraphCard extends StatelessWidget {
             ),
             Text(
               description ?? '',
-              style: TextStyle(color: Colors.grey, fontSize: 16),
+              style: const TextStyle(color: Colors.grey, fontSize: 16),
             ),
           ],
         ),

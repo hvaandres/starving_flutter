@@ -23,7 +23,7 @@ class CustomCardIconScreen extends StatelessWidget {
             onPressed: () => showSnackBar(context, 'Card with Icon'),
           ),
 
-          CustomCardIcon(
+          const CustomCardIcon(
             label: 'Card without Icon',
             cardBackgroundColor: Colors.blueGrey,
             textColor: Colors.white,

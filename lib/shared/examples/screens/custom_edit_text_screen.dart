@@ -20,7 +20,7 @@ class _CustomEditTextScreenState extends State<CustomEditTextScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('EditText examples')),
+      appBar: AppBar(title: const Text('EditText examples')),
       body: Column(children: [CustomEditText(textController: textController)]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -34,7 +34,7 @@ class _CustomEditTextScreenState extends State<CustomEditTextScreen> {
             },
           );
         },
-        child: Icon(Icons.text_fields),
+        child: const Icon(Icons.text_fields),
       ),
     );
   }

@@ -37,7 +37,7 @@ class CardOptions extends StatelessWidget {
               Row(
                 children: [
                   Icon(iconTitle, color: iconTitleColor),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
                     title,
                     style: TextStyle(
@@ -94,7 +94,7 @@ class _CardOption extends StatelessWidget {
               color: itemOption.iconColor,
              )
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Expanded(
             child: Text(
               itemOption.name,

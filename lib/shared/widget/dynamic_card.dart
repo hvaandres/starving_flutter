@@ -60,7 +60,7 @@ class DynamicCard extends StatelessWidget {
                                   horizontal: 8.0,
                                   vertical: 6.0,
                                 )
-                                : EdgeInsets.symmetric(
+                                : const EdgeInsets.symmetric(
                                   horizontal: 0.0,
                                   vertical: 6.0,
                                 ),

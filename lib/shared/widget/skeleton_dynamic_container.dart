@@ -24,7 +24,7 @@ class SkeletonDynamicContainer extends StatelessWidget {
       
           (middleWidget != null)
               ? Expanded(child: middleWidget!)
-              : Placeholder(),
+              : const Placeholder(),
       
           if (bottomWidget != null) bottomWidget!,
         ],

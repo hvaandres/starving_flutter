@@ -11,7 +11,7 @@ class CardOptionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text('Card Options examples')),
+      appBar: AppBar(title: const Text('Card Options examples')),
       body: Column(
         children: [
           CardOptions(

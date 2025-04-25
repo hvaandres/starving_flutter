@@ -1,10 +1,5 @@
-import 'package:isar/isar.dart';
-
-part 'grocery.g.dart';
-
-@collection
 class Grocery {
-  Id? id;
+  int? id;
   final bool isCompleted;
   final String name;
 

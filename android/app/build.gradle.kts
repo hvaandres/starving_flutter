@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.example.starving_shopping_flutter_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    ndkVersion = keystoreProperties["ndkVersion"] as String
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

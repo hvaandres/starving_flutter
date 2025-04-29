@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:starving_shopping_flutter_app/data/database/utils.dart';
 import 'package:starving_shopping_flutter_app/domain/entity/grocery.dart';
 
 class GroceryDatabase {
@@ -24,34 +25,34 @@ class GroceryDatabase {
 
   Future<int> insertGrocery(Grocery grocery) async {
     final db = await database;
-    return await db.insert('groceries', grocery.toMap());
+    return await db.insert(kGroceryTable, grocery.toMap());
   }
 
   Future<int> deleteGrocecy(int id) async {
     final db = await database;
-    return await db.delete('groceries', where: 'id = ?', whereArgs: [id]);
+    return await db.delete(kGroceryTable, where: kWhereId, whereArgs: [id]);
   }
 
   Future<int> updateGrocery(Grocery grocery) async {
     final db = await database;
     return await db.update(
-      'groceries',
+      kGroceryTable,
       grocery.toMap(),
-      where: 'id = ?',
+      where: kWhereId,
       whereArgs: [grocery.id],
     );
   }
 
   Future<Database> _initDb() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'groceries.db');
+    final path = join(dbPath, '$kGroceryTable.db');
 
     return await openDatabase(
       path,
       version: 1,
       onCreate: (db, version) {
         return db.execute('''
-          CREATE TABLE groceries(
+          CREATE TABLE $kGroceryTable(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             is_completed INTEGER

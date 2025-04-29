@@ -38,7 +38,7 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
     
     try {
       final grocery = Grocery(name: event.groceryName);
-      await localStorageRepository.putGrocery(grocery);
+      await localStorageRepository.insertGrocery(grocery);
       final groceryList = await localStorageRepository.getAllGroceries();
       emit(GroceryLoadedNotEmpty(groceryList));
     } catch (e) {

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import 'package:starving_shopping_flutter_app/data/database/grocery_database.dart';
 import 'package:starving_shopping_flutter_app/data/datasource/isar_datasource.dart';
 import 'package:starving_shopping_flutter_app/data/repository/local_storage_repository_impl.dart';
 import 'package:starving_shopping_flutter_app/domain/datasource/local_storage_datasource.dart';
@@ -9,8 +10,14 @@ import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_bloc.da
 final getIt = GetIt.instance;
 
 void setupLocator() {
+  getIt.registerLazySingleton<GroceryDatabase>(
+    () => GroceryDatabase()
+  );
+
   getIt.registerLazySingleton<LocalStorageDatasource>(
-    () => IsarDatasource(),
+    () => IsarDatasource(
+      groceryDatabase: getIt<GroceryDatabase>()
+    ),
   );
 
   getIt.registerLazySingleton<LocalStorageRepository>(

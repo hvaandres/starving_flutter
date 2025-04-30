@@ -16,7 +16,7 @@ class LocalStorageRepositoryImpl extends LocalStorageRepository {
   }
 
   @override
-  Future<int?> putGrocery(Grocery grocery) {
-    return localStorageDatasource.putGrocery(grocery);
+  Future<int> insertGrocery(Grocery grocery) {
+    return localStorageDatasource.insertGrocery(grocery);
   }
 }

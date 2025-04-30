@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) =>
-              getIt<GroceryBloc>()..add(const GroceryEvent.loadGroceries()),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home:
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create:
+            (context) =>
+                getIt<GroceryBloc>()..add(const GroceryEvent.loadGroceries()),
+        child:
             Environment.wantSeeExamples
                 ? const ExamplesScreen()
                 : const MainScreen(),

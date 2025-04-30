@@ -1,26 +1,27 @@
-import 'package:isar/isar.dart';
-
-part 'grocery.g.dart';
-
-@collection
 class Grocery {
-  Id? id;
+  final int? id;
   final bool isCompleted;
   final String name;
 
   Grocery({
+    this.id,
     this.isCompleted = false,
     required this.name,
   });
 
-  Grocery copyWith({
-    int? id,
-    String? name,
-  }) {
-    final grocery = Grocery(
-      name: name ?? this.name,
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'is_completed': isCompleted,
+      'name': name,
+    };
+  }
+
+  factory Grocery.fromMap(Map<String, dynamic> map) {
+    return Grocery(
+      id: map['id'] as int?,
+      isCompleted: map['is_completed'] as int == 1,
+      name: map['name'] as String,
     );
-    grocery.id = id;
-    return grocery;
   }
 }

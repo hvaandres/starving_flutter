@@ -29,13 +29,13 @@ class SimpleFormBottomsheetScreen extends StatelessWidget {
                       // WIP replace with EditText
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Text('What groceries do you need to purchased'),
+                        child: Text('What groceries do you need to purchase?'),
                       ),
                       SolidButton(
                         labelButton: 'Add',
                         colorButton: Colors.black,
                         textColor: Colors.white,
-                        onTap:() {
+                        onTap: () {
                           Navigator.pop(context);
                         },
                       ),

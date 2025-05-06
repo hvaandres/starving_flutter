@@ -9,9 +9,8 @@ class CardOptionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Card Options examples')),
+      appBar: AppBar(title: const Text('Card Options Examples')),
       body: Column(
         children: [
           CardOptions(
@@ -24,34 +23,28 @@ class CardOptionsScreen extends StatelessWidget {
             forwardColor: Colors.black,
             items: [
               ItemOption(
-                name: 'Rate on App Store', // ! put app store o play store
-                iconColor: Colors.amber,
-                imageResource: getFullPathAsset('start_icon_menu.png'),
-                onPressed: () {
-                  // open some store
-                }
-              ),
-
+                  name: 'Rate on App Store', // ! put app store o play store
+                  iconColor: Colors.amber,
+                  imageResource: getFullPathAsset('start_icon_menu.png'),
+                  onPressed: () {
+                    // open some store
+                  }),
               ItemOption(
-                name: 'Share App',
-                iconColor: Colors.blueAccent,
-                imageResource: getFullPathAsset('share_icon_menu.png'),
-                onPressed: () {
-                  // open some store
-                }
-              ),
-
+                  name: 'Share App',
+                  iconColor: Colors.blueAccent,
+                  imageResource: getFullPathAsset('share_icon_menu.png'),
+                  onPressed: () {
+                    // open some store
+                  }),
               ItemOption(
-                name: 'Send Feedback',
-                iconColor: Colors.greenAccent,
-                imageResource: getFullPathAsset('mail_icon_menu.png'),
-                onPressed: () {
-                  // open some store
-                }
-              ),
+                  name: 'Send Feedback',
+                  iconColor: Colors.greenAccent,
+                  imageResource: getFullPathAsset('mail_icon_menu.png'),
+                  onPressed: () {
+                    // open some store
+                  }),
             ],
           ),
-
           CardOptions(
             title: 'Connect',
             iconTitle: Icons.group,
@@ -62,22 +55,19 @@ class CardOptionsScreen extends StatelessWidget {
             forwardColor: Colors.black,
             items: [
               ItemOption(
-                name: 'Join Space Creators',
-                iconColor: Colors.purpleAccent,
-                imageResource: getFullPathAsset('feedback_icon_menu.png'),
-                onPressed: () {
-                  // open some store
-                }
-              ),
-
+                  name: 'Join Space Creators',
+                  iconColor: Colors.purpleAccent,
+                  imageResource: getFullPathAsset('feedback_icon_menu.png'),
+                  onPressed: () {
+                    // open some store
+                  }),
               ItemOption(
-                name: 'Read on Medium',
-                iconColor: Colors.orangeAccent,
-                imageResource: getFullPathAsset('read_icon_menu.png'),
-                onPressed: () {
-                  // open some store
-                }
-              ),
+                  name: 'Read on Medium',
+                  iconColor: Colors.orangeAccent,
+                  imageResource: getFullPathAsset('read_icon_menu.png'),
+                  onPressed: () {
+                    // open some store
+                  }),
             ],
           ),
         ],

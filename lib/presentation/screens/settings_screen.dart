@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:share_plus/share_plus.dart';
+
 import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
+import 'package:starving_shopping_flutter_app/presentation/constant.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
+import 'package:starving_shopping_flutter_app/shared/methods/appstore_info.dart';
+import 'package:starving_shopping_flutter_app/shared/methods/open_email.dart';
+import 'package:starving_shopping_flutter_app/shared/methods/url.dart';
 import 'package:starving_shopping_flutter_app/shared/models/models.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/card_options.dart';
 
@@ -73,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         GestureDetector(
                           onTap: () {
-                            
+                            openUrl(gitHubProfle);
                           },
                           child: const Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +118,7 @@ class SettingsScreen extends StatelessWidget {
                     iconColor: Colors.amber,
                     imageResource: getFullPathAsset('start_icon_menu.png'),
                     onPressed: () {
-                      // open some store
+                      openAppStoreInside();
                     },
                   ),
           
@@ -120,8 +126,10 @@ class SettingsScreen extends StatelessWidget {
                     name: 'Share App',
                     iconColor: Colors.blueAccent,
                     imageResource: getFullPathAsset('share_icon_menu.png'),
-                    onPressed: () {
-                      // open some store
+                    onPressed: () async {
+                      await SharePlus.instance.share(
+                        ShareParams(text: shareUrl)
+                      );
                     },
                   ),
           
@@ -130,7 +138,7 @@ class SettingsScreen extends StatelessWidget {
                     iconColor: Colors.greenAccent,
                     imageResource: getFullPathAsset('mail_icon_menu.png'),
                     onPressed: () {
-                      // open some store
+                      openEmail();
                     },
                   ),
                 ],
@@ -150,7 +158,7 @@ class SettingsScreen extends StatelessWidget {
                     iconColor: Colors.purpleAccent,
                     imageResource: getFullPathAsset('feedback_icon_menu.png'),
                     onPressed: () {
-                      // open some store
+                      openUrl(spaceCreator);
                     },
                   ),
           
@@ -159,7 +167,7 @@ class SettingsScreen extends StatelessWidget {
                     iconColor: Colors.orangeAccent,
                     imageResource: getFullPathAsset('read_icon_menu.png'),
                     onPressed: () {
-                      // open some store
+                      openUrl(medium);
                     },
                   ),
                 ],

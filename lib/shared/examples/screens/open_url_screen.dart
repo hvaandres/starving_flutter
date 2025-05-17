@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' show launchUrl;
+import 'package:starving_shopping_flutter_app/shared/methods/url.dart';
 
 class OpenUrlScreen extends StatelessWidget {
   const OpenUrlScreen({super.key});
@@ -12,17 +12,10 @@ class OpenUrlScreen extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: _launchUrl,
+          onPressed: openUrl("https://github.com/hvaandres"),
           child: const Text('Show main homepage'),
         ),
       ),
     );
-  }
-
-  _launchUrl() async {
-    final Uri url = Uri.parse("https://github.com/hvaandres");
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
   }
 }

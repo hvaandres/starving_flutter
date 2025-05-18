@@ -6,9 +6,9 @@ openEmail() async {
     scheme: 'mailto',
     path: mailRegistered,
   );
-  if (await canLaunchUrl(uri)) {
+  try {
     await launchUrl(uri);
-  } else {
-    throw Exception('Could not open email');
+  } catch (e) {
+    e.toString();
   }
 }

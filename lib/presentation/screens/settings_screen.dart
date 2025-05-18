@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 
 import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
 import 'package:starving_shopping_flutter_app/presentation/constant.dart';
+import 'package:starving_shopping_flutter_app/presentation/managers/resource_manager_impl.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/methods/appstore_info.dart';
 import 'package:starving_shopping_flutter_app/shared/methods/open_email.dart';
@@ -16,6 +17,9 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final resourceManager = ResourceManagerImpl();
+
     return Scaffold(
       backgroundColor: context.primaryBackgroundColor,
       appBar: AppBar(
@@ -128,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
                     imageResource: getFullPathAsset('share_icon_menu.png'),
                     onPressed: () async {
                       await SharePlus.instance.share(
-                        ShareParams(text: shareUrl)
+                        ShareParams(text: resourceManager.getStoreUrl())
                       );
                     },
                   ),

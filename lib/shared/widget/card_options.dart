@@ -81,34 +81,41 @@ class _CardOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: itemOption.iconColor.withAlpha(40),
-            radius: 20,
-            child:
-             ImageIcon(
-              AssetImage(
-                itemOption.imageResource,
-              ),
-              color: itemOption.iconColor,
-             )
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              itemOption.name,
-              style: TextStyle(
-                fontSize: 18.0,
-                color: itemColor
-              )
+      child: GestureDetector(
+        onTap: () {
+          if (itemOption.onPressed != null) {
+            itemOption.onPressed!();
+          }
+        },
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: itemOption.iconColor.withAlpha(40),
+              radius: 20,
+              child:
+               ImageIcon(
+                AssetImage(
+                  itemOption.imageResource,
+                ),
+                color: itemOption.iconColor,
+               )
             ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: forwardColor,
-          ),
-        ],
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                itemOption.name,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: itemColor
+                )
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: forwardColor,
+            ),
+          ],
+        ),
       ),
     );
   }

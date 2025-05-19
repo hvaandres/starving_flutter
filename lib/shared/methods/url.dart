@@ -1,4 +1,4 @@
-import 'package:url_launcher/url_launcher.dart' show launchUrl, canLaunchUrl;
+import 'package:url_launcher/url_launcher.dart' show launchUrl;
 
 openUrl(String url) async {
   final Uri uri = Uri.parse(url);

@@ -9,9 +9,14 @@ class CustomIconTextListCard extends StatefulWidget {
   // colors and icons
   final Color activeColor;
   final Color inactiveColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final Color iconColor;
 
   final int itemSelected;
   final ValueChanged<int>? onItemSelected;
+
+  final double horizontalPadding;
 
   const CustomIconTextListCard({
     super.key,
@@ -20,7 +25,11 @@ class CustomIconTextListCard extends StatefulWidget {
     required this.cardHeight,
     required this.inactiveColor,
     required this.activeColor,
+    required this.textColor,
+    required this.backgroundColor,
+    required this.iconColor,
     required this.itemSelected,
+    this.horizontalPadding = 16.0,
     this.onItemSelected,
   });
 
@@ -57,60 +66,63 @@ class _CustomIconTextListCardState extends State<CustomIconTextListCard> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.cardHeight,
-      child: ListView.separated(
-        controller: _scrollController,
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(right: 0.0),
-        itemCount: widget.optionIcons.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 4),
-        itemBuilder: (context, index) {
-          final currentColor =
-              index == widget.itemSelected
-                  ? widget.activeColor
-                  : widget.inactiveColor;
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: widget.horizontalPadding),
+        child: ListView.separated(
+          controller: _scrollController,
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.only(right: 0.0),
+          itemCount: widget.optionIcons.length,
+          separatorBuilder: (context, index) => const SizedBox(width: 4),
+          itemBuilder: (context, index) {
+            final currentColor =
+                index == widget.itemSelected
+                    ? widget.activeColor
+                    : widget.inactiveColor;
 
-          final currentIcon = widget.optionIcons.values.elementAt(index);
-          final currentText = widget.optionIcons.keys.elementAt(index);
+            final currentIcon = widget.optionIcons.values.elementAt(index);
+            final currentText = widget.optionIcons.keys.elementAt(index);
 
-          return GestureDetector(
-            onTap: () {
-              widget.onItemSelected?.call(index);
-            },
-            child: SizedBox(
-              width: widget.cardWidth,
-              height: widget.cardHeight,
-              child: Card(
-                color: Colors.grey[900],
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: currentColor,
-                      radius: 18,
-                      child: Icon(currentIcon, color: Colors.black),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      currentText,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: currentColor,
+            return GestureDetector(
+              onTap: () {
+                widget.onItemSelected?.call(index);
+              },
+              child: SizedBox(
+                width: widget.cardWidth,
+                height: widget.cardHeight,
+                child: Card(
+                  color: widget.backgroundColor,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: currentColor,
+                        radius: 18,
+                        child: Icon(currentIcon, color: widget.iconColor),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 12),
+                      Text(
+                        currentText,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: currentColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

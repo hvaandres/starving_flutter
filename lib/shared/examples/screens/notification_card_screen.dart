@@ -34,6 +34,9 @@ class _NotificationCardScreenState extends State<NotificationCardScreen> {
               cardHeight: 100.0,
               activeColor: Colors.blue,
               inactiveColor: Colors.white,
+              textColor: Colors.white,
+              backgroundColor: Colors.grey[900]!,
+              iconColor: Colors.black,
               itemSelected: _selectedItemIndex,
               onItemSelected: (index) {
                 setState(() {

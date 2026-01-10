@@ -9,6 +9,14 @@ class RemindersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // remove when bloc is implemented
+    final Map<String, IconData> optionIcons = {
+      '8:00 a.m.': Icons.notifications,
+      '12:00 p.m.': Icons.notifications,
+      '6:00 a.m.': Icons.notifications,
+      'Custom': Icons.watch_later,
+    };
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -27,6 +35,48 @@ class RemindersScreen extends StatelessWidget {
             circleAvatarColor: Colors.grey,
             cardBackgroundColor: context.backgroundSecondaryColor,
           ),
+          //#region Reminder time selection
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Choose Reminder Time',
+                style: TextStyle(
+                  color: context.primaryContrastColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          CustomIconTextListCard(
+            optionIcons: optionIcons,
+            cardWidth: 120.0,
+            cardHeight: 100.0,
+            activeColor: Colors.blue,
+            inactiveColor: context.primaryContrastColor,
+            textColor: context.primaryContrastColor,
+            backgroundColor: context.backgroundSecondaryColor,
+            iconColor: context.primaryBackgroundColor,
+            // update with bloc when it is implemented
+            itemSelected: 3,
+            onItemSelected: (index) {
+              // wip
+            },
+          ),
+          DynamicCard(
+            icon: Icons.notifications_active,
+            title: 'Current schedule',
+            subtitle: 'Daily reminder scheduled for 8:00 a.m.',
+            status: 'Active',
+            description: 'Last modified: 1 second ago',
+            iconColor: context.primaryContrastColor,
+            subtitleColor: context.primaryContrastColor,
+            titleColor: context.primaryContrastColor,
+            cardColor: context.backgroundSecondaryColor,
+          ),
+          //#endregion
           DynamicCard(
             title: 'About Daily Reminders',
             description:
@@ -34,6 +84,7 @@ class RemindersScreen extends StatelessWidget {
             titleColor: context.primaryContrastColor,
             cardColor: context.backgroundSecondaryColor,
           ),
+          // visible when reminders are not enabled
           CustomAssetImage(
             pathImage: getFullPathAsset('reminder_screen_resource.png'),
           ),

@@ -11,6 +11,7 @@ enum ItemExampleEnum {
   customEditText,
   customAssetImage,
   cardOptions,
+  notificationCard,
   openUrl,
 }
 
@@ -54,6 +55,10 @@ class ExamplesScreen extends StatelessWidget {
       name: 'Card Options',
       idItem: ItemExampleEnum.cardOptions,
     ));
+    itemExampleList.add((
+      name: 'Notification Card',
+      idItem: ItemExampleEnum.notificationCard,
+    ));
     itemExampleList.add((name: 'Open Url', idItem: ItemExampleEnum.openUrl));
 
     return Scaffold(
@@ -91,6 +96,9 @@ class ExamplesScreen extends StatelessWidget {
                   break;
                 case ItemExampleEnum.cardOptions:
                   screen = const CardOptionsScreen();
+                  break;
+                case ItemExampleEnum.notificationCard:
+                  screen = const NotificationCardScreen();
                   break;
                 case ItemExampleEnum.openUrl:
                   screen = const OpenUrlScreen();

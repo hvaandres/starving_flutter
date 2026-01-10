@@ -1,6 +1,7 @@
 export 'custom_asset_image.dart';
 export 'custom_card_icon.dart';
 export 'custom_edit_text.dart';
+export 'custom_icon_text_list_card.dart';
 export 'dynamic_card.dart';
 export 'empty_state_dynamic.dart';
 export 'paragraph_card.dart';

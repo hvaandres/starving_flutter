@@ -12,9 +12,7 @@ class GroceryDatabase {
   Database? db;
 
   Future<Database> get database async {
-    if (db != null) return db!;
-    db = await _initDb();
-    return db!;
+    return db ?? await _initDb();
   }
 
   Future<List<Grocery>> getGroceries() async {

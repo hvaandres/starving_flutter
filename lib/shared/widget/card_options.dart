@@ -40,10 +40,7 @@ class CardOptions extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: titleColor,
-                    )
+                    style: TextStyle(fontSize: 14, color: titleColor),
                   ),
                 ],
               ),
@@ -83,37 +80,26 @@ class _CardOption extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: GestureDetector(
         onTap: () {
-          if (itemOption.onPressed != null) {
-            itemOption.onPressed!();
-          }
+          itemOption.onPressed?.call();
         },
         child: Row(
           children: [
             CircleAvatar(
               backgroundColor: itemOption.iconColor.withAlpha(40),
               radius: 20,
-              child:
-               ImageIcon(
-                AssetImage(
-                  itemOption.imageResource,
-                ),
+              child: ImageIcon(
+                AssetImage(itemOption.imageResource),
                 color: itemOption.iconColor,
-               )
+              ),
             ),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 itemOption.name,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: itemColor
-                )
+                style: TextStyle(fontSize: 18.0, color: itemColor),
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: forwardColor,
-            ),
+            Icon(Icons.arrow_forward_ios, color: forwardColor),
           ],
         ),
       ),

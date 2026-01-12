@@ -148,7 +148,7 @@ class _CustomIconTextListCardState extends State<CustomIconTextListCard> {
 
     _scrollController.animateTo(
       finalPosition,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }

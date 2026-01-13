@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
-import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_bloc.dart';
-import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_event.dart';
-import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_state.dart';
+import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
 import 'package:starving_shopping_flutter_app/presentation/widget/widget.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart';
 
@@ -18,21 +16,16 @@ class ItemsScreen extends StatelessWidget {
       textColor: context.primaryBackgroundColor,
       onTap: () {
         //! open bottomsheet
-        context.read<GroceryBloc>().add(
-          const GroceryEvent.addGrocery('new')
-        );
+        context.read<GroceryBloc>().add(const GroceryEvent.addGrocery('new'));
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<GroceryBloc, GroceryState>(
       builder: (context, state) {
-        Widget middleWidget = const Center(
-          child: CircularProgressIndicator()
-        );
+        Widget middleWidget = const Center(child: CircularProgressIndicator());
         Widget? bottomWidget;
 
         state.when(

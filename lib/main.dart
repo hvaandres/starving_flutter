@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starving_shopping_flutter_app/code/di/injector.dart';
 
 import 'package:starving_shopping_flutter_app/config/constant/environment.dart';
-import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_bloc.dart';
-import 'package:starving_shopping_flutter_app/presentation/blocs/grocery_event.dart';
+import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
 import 'package:starving_shopping_flutter_app/presentation/screens/main_screen.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/screens/examples_screen.dart';
 
@@ -22,10 +21,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create:
-            (context) =>
-                getIt<GroceryBloc>()..add(const GroceryEvent.loadGroceries()),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create:
+                (_) =>
+                    getIt<GroceryBloc>()
+                      ..add(const GroceryEvent.loadGroceries()),
+          ),
+          BlocProvider(create: (_) => getIt<PermissionBloc>()),
+        ],
         child:
             Environment.wantSeeExamples
                 ? const ExamplesScreen()

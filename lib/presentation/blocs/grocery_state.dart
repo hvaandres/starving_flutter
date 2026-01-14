@@ -1,12 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starving_shopping_flutter_app/domain/entity/grocery.dart';
 
-part 'grocery_state.freezed.dart';
+abstract class GroceryState {}
 
-@freezed
-class GroceryState with _$GroceryState {
-  const factory GroceryState.loading() = GroceryLoading;
-  const factory GroceryState.loadedNotEmpty(List<Grocery> groceries) = GroceryLoadedNotEmpty;
-  const factory GroceryState.loadedEmpty() = GroceryLoadedEmpty;
-  const factory GroceryState.error(String message) = GroceryError;
+class GroceryLoading extends GroceryState {}
+
+class GroceryLoadedNotEmpty extends GroceryState {
+  final List<Grocery> groceries;
+
+  GroceryLoadedNotEmpty(this.groceries);
+}
+
+class GroceryLoadedEmpty extends GroceryState {}
+
+class GroceryError extends GroceryState {
+  final String message;
+
+  GroceryError(this.message);
 }

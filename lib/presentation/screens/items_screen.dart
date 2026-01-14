@@ -16,7 +16,7 @@ class ItemsScreen extends StatelessWidget {
       textColor: context.primaryBackgroundColor,
       onTap: () {
         //! open bottomsheet
-        context.read<GroceryBloc>().add(const GroceryEvent.addGrocery('new'));
+        context.read<GroceryBloc>().add(AddGrocery('new'));
       },
     );
   }
@@ -28,13 +28,14 @@ class ItemsScreen extends StatelessWidget {
         Widget middleWidget = const Center(child: CircularProgressIndicator());
         Widget? bottomWidget;
 
-        state.when(
-          loading: () {},
-          loadedNotEmpty: (groceryList) {
-            middleWidget = ItemsListMiddleScreen(groceryList: groceryList);
+        switch (state) {
+          case GroceryLoadedNotEmpty groceryLoadedNotEmpty:
+            middleWidget = ItemsListMiddleScreen(
+              groceryList: groceryLoadedNotEmpty.groceries,
+            );
             bottomWidget = _getBottomButton(context);
-          },
-          loadedEmpty: () {
+            break;
+          case GroceryLoadedEmpty():
             middleWidget = EmptyStateDynamic(
               nameSkeletonImage: 'items_screen_resource.png',
               descriptionText:
@@ -42,16 +43,18 @@ class ItemsScreen extends StatelessWidget {
               dynamicCardColor: context.backgroundSecondaryColor,
             );
             bottomWidget = bottomWidget = _getBottomButton(context);
-          },
-          error: (error) {
+            break;
+          case GroceryError _:
             middleWidget = EmptyStateDynamic(
               nameSkeletonImage: 'items_screen_resource.png',
               descriptionText:
                   'Star by adding the groceries you\'ll need for the week, and be sure to select the items on this screen to move them to the Today\'s tab!',
               dynamicCardColor: context.backgroundSecondaryColor,
             );
-          },
-        );
+            break;
+          default:
+            break;
+        }
 
         return SkeletonDynamicContainer(
           containerColor: context.primaryBackgroundColor,

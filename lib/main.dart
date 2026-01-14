@@ -24,10 +24,7 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create:
-                (_) =>
-                    getIt<GroceryBloc>()
-                      ..add(const GroceryEvent.loadGroceries()),
+            create: (_) => getIt<GroceryBloc>()..add(LoadGroceries()),
           ),
           BlocProvider(create: (_) => getIt<PermissionBloc>()),
         ],

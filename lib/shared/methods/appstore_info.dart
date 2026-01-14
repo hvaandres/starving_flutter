@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:appstore_info/appstore_info.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:starving_shopping_flutter_app/presentation/constant.dart';
 import 'package:starving_shopping_flutter_app/shared/methods/url.dart';
@@ -14,6 +15,8 @@ openAppStoreInside() async {
       openUrl(androidStoreUrl);
     }
   } catch (e) {
-    print('Error: $e');
+    if (kDebugMode) {
+      debugPrint('Error: $e');
+    }
   }
 }

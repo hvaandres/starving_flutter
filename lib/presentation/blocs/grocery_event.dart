@@ -1,9 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class GroceryEvent {}
 
-part 'grocery_event.freezed.dart';
+class LoadGroceries extends GroceryEvent {}
 
-@freezed
-class GroceryEvent with _$GroceryEvent {
-    const factory GroceryEvent.loadGroceries() = LoadGroceries;
-    const factory GroceryEvent.addGrocery(String groceryName) = AddGrocery;
+class AddGrocery extends GroceryEvent {
+  final String groceryName;
+
+  AddGrocery(this.groceryName);
 }

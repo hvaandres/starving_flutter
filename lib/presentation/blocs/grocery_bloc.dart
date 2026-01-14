@@ -10,20 +10,24 @@ import 'grocery_state.dart';
 class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
   final LocalStorageRepository localStorageRepository;
 
-  GroceryBloc({required this.localStorageRepository}) : super(const GroceryLoading()) {
+  GroceryBloc({required this.localStorageRepository})
+    : super(GroceryLoading()) {
     on<LoadGroceries>(onLoadGroceries);
     on<AddGrocery>(onAddGrocery);
   }
 
-  FutureOr<void> onLoadGroceries(LoadGroceries event, Emitter<GroceryState> emit) async {
-    emit(const GroceryLoading());
-    
+  FutureOr<void> onLoadGroceries(
+    LoadGroceries event,
+    Emitter<GroceryState> emit,
+  ) async {
+    emit(GroceryLoading());
+
     try {
       Future.delayed(const Duration(seconds: 2));
       final groceryList = await localStorageRepository.getAllGroceries();
 
       if (groceryList.isEmpty) {
-        emit(const GroceryLoadedEmpty());
+        emit(GroceryLoadedEmpty());
         return;
       } else {
         emit(GroceryLoadedNotEmpty(groceryList));
@@ -33,9 +37,12 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
     }
   }
 
-  FutureOr<void> onAddGrocery(AddGrocery event, Emitter<GroceryState> emit) async {
-    emit(const GroceryLoading());
-    
+  FutureOr<void> onAddGrocery(
+    AddGrocery event,
+    Emitter<GroceryState> emit,
+  ) async {
+    emit(GroceryLoading());
+
     try {
       final grocery = Grocery(name: event.groceryName);
       await localStorageRepository.insertGrocery(grocery);

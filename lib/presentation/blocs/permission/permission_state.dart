@@ -9,3 +9,5 @@ class PermissionDenied extends PermissionState {}
 class PermissionDeniedGoToSettings extends PermissionState {}
 
 class PermissionGranted extends PermissionState {}
+
+class PermissionDeniedStarted extends PermissionState {}

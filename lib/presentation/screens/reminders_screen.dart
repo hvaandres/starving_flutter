@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:app_settings/app_settings.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
 import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
@@ -25,6 +26,7 @@ class _RemindersScreenState extends State<RemindersScreen>
   @override
   void initState() {
     super.initState();
+    context.read<PermissionBloc>().add(CheckNotificationPermission());
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -33,7 +35,7 @@ class _RemindersScreenState extends State<RemindersScreen>
     if (state == AppLifecycleState.resumed) {
       if (_shouldCheckNotificationPermission) {
         _shouldCheckNotificationPermission = false;
-        context.read<PermissionBloc>().add(RequestNotificationPermission());
+        context.read<PermissionBloc>().add(CheckNotificationPermission());
       }
     }
   }
@@ -114,7 +116,7 @@ class _RemindersScreenState extends State<RemindersScreen>
                 backgroundColor: context.backgroundSecondaryColor,
                 iconColor: context.primaryBackgroundColor,
                 // update with bloc when it is implemented
-                itemSelected: 3,
+                itemSelected: 0,
                 onItemSelected: (index) {
                   // wip
                 },
@@ -167,7 +169,7 @@ class _RemindersScreenState extends State<RemindersScreen>
         );
         break;
       case PermissionDeniedPermanently _:
-        // WIP
+        UIHelpers.showPermissionDialog(context, _goToNotificationSettings);
         break;
       case PermissionDeniedGoToSettings _:
         UIHelpers.showPermissionDialog(context, _goToNotificationIOSSettings);
@@ -175,6 +177,12 @@ class _RemindersScreenState extends State<RemindersScreen>
       default:
         break;
     }
+  }
+
+  Future<void> _goToNotificationSettings() async {
+    _shouldCheckNotificationPermission = true;
+    Navigator.of(context).pop();
+    await openAppSettings();
   }
 
   Future<void> _goToNotificationIOSSettings() async {

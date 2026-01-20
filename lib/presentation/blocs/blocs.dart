@@ -4,3 +4,6 @@ export 'grocery_state.dart';
 export 'permission/permission_bloc.dart';
 export 'permission/permission_event.dart';
 export 'permission/permission_state.dart';
+export 'alarm/alarm_permission_bloc.dart';
+export 'alarm/alarm_permission_event.dart';
+export 'alarm/alarm_permission_state.dart';

@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:starving_shopping_flutter_app/code/di/injector.dart';
 import 'package:starving_shopping_flutter_app/config/theme/color_manager_extension.dart';
 import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
 import 'package:starving_shopping_flutter_app/presentation/core/app_constant.dart';
 import 'package:starving_shopping_flutter_app/presentation/core/snackbar_type_duration.dart';
 import 'package:starving_shopping_flutter_app/presentation/core/ui_helpers.dart';
+import 'package:starving_shopping_flutter_app/presentation/service/android_settings_service.dart';
 import 'package:starving_shopping_flutter_app/shared/examples/extension/string_extension.dart';
 import 'package:starving_shopping_flutter_app/shared/widget/widgets.dart';
 
@@ -21,7 +23,9 @@ class RemindersScreen extends StatefulWidget {
 
 class _RemindersScreenState extends State<RemindersScreen>
     with WidgetsBindingObserver {
-  bool _shouldCheckNotificationPermission = false;
+  bool _didButtonClicked = false;
+  bool _wasAlarmPermissionDenied = false;
+  bool _wasSettingsCalled = false;
 
   @override
   void initState() {
@@ -33,8 +37,14 @@ class _RemindersScreenState extends State<RemindersScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (_shouldCheckNotificationPermission) {
-        _shouldCheckNotificationPermission = false;
+      if(_didButtonClicked || _wasAlarmPermissionDenied) {
+        _didButtonClicked = false;
+        _wasAlarmPermissionDenied = false;
+        context.read<PermissionBloc>().add(CheckNotificationPermission());
+      }
+      if (_wasSettingsCalled) {
+        _didButtonClicked = _wasSettingsCalled;
+        _wasSettingsCalled = false;
         context.read<PermissionBloc>().add(CheckNotificationPermission());
       }
     }
@@ -57,7 +67,10 @@ class _RemindersScreenState extends State<RemindersScreen>
     };
 
     final permissionState = context.watch<PermissionBloc>().state;
-    final notificationCanPerform = permissionState is PermissionGranted;
+    final alarmPermissionState = context.watch<AlarmPermissionBloc>().state;
+    final notificationCanPerform =
+        permissionState is PermissionGranted &&
+        alarmPermissionState is AlarmPermissionGranted;
 
     return MultiBlocListener(
       listeners: _buildListeners(),
@@ -85,9 +98,12 @@ class _RemindersScreenState extends State<RemindersScreen>
                   () =>
                       notificationCanPerform
                           ? null
-                          : context.read<PermissionBloc>().add(
+                          : {
+                            _didButtonClicked = true,
+                            context.read<PermissionBloc>().add(
                             RequestNotificationPermission(),
-                          ),
+                            ),
+                          },
             ),
             //#region Reminder time selection
             if (notificationCanPerform)
@@ -156,6 +172,9 @@ class _RemindersScreenState extends State<RemindersScreen>
       BlocListener<PermissionBloc, PermissionState>(
         listener: _handlePermissionState,
       ),
+      BlocListener<AlarmPermissionBloc, AlarmPermissionState>(
+        listener: _handleAlarmPermissionState,
+      ),
     ];
   }
 
@@ -174,20 +193,38 @@ class _RemindersScreenState extends State<RemindersScreen>
       case PermissionDeniedGoToSettings _:
         UIHelpers.showPermissionDialog(context, _goToNotificationIOSSettings);
         break;
+      case PermissionGranted _:
+        if (_didButtonClicked) {
+          _wasAlarmPermissionDenied = true;
+        }
+        context.read<AlarmPermissionBloc>().add(RequestAlarmPermission());
+        break;
       default:
         break;
     }
   }
 
+  void _handleAlarmPermissionState(
+    BuildContext context,
+    AlarmPermissionState state,
+  ) {
+    if (state is AlarmPermissionDenied && _didButtonClicked) {
+      _requestScheduleExactAlarmActivity();
+    }
+  }
+
   Future<void> _goToNotificationSettings() async {
-    _shouldCheckNotificationPermission = true;
+    _wasSettingsCalled = true;
     Navigator.of(context).pop();
     await openAppSettings();
   }
 
   Future<void> _goToNotificationIOSSettings() async {
-    _shouldCheckNotificationPermission = true;
     AppSettings.openAppSettings(type: AppSettingsType.notification);
     Navigator.of(context).pop();
+  }
+
+  Future<void> _requestScheduleExactAlarmActivity() async {
+    await getIt<AndroidSettingsService>().openScheduleExactAlarmSettings();
   }
 }

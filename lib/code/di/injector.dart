@@ -7,12 +7,16 @@ import 'package:starving_shopping_flutter_app/data/repository/local_storage_repo
 import 'package:starving_shopping_flutter_app/domain/datasource/local_storage_datasource.dart';
 import 'package:starving_shopping_flutter_app/domain/repository/local_storage_repository.dart';
 import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
+import 'package:starving_shopping_flutter_app/presentation/service/android_settings_service.dart';
 
 final getIt = GetIt.instance;
 
 void setupLocator() {
   getIt.registerLazySingleton<FlutterLocalNotificationsPlugin>(
     () => FlutterLocalNotificationsPlugin(),
+  );
+  getIt.registerLazySingleton<AndroidSettingsService>(
+    () => AndroidSettingsService(),
   );
   getIt.registerLazySingleton<GroceryDatabase>(() => GroceryDatabase());
 
@@ -28,6 +32,7 @@ void setupLocator() {
 
   // Blocs
   getIt.registerFactory(() => PermissionBloc());
+  getIt.registerFactory(() => AlarmPermissionBloc());
   getIt.registerFactory<GroceryBloc>(
     () => GroceryBloc(localStorageRepository: getIt<LocalStorageRepository>()),
   );

@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
             create: (_) => getIt<GroceryBloc>()..add(LoadGroceries()),
           ),
           BlocProvider(create: (_) => getIt<PermissionBloc>()),
+          BlocProvider(create: (_) => getIt<AlarmPermissionBloc>()),
         ],
         child:
             Environment.wantSeeExamples

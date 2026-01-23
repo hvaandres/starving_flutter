@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  android_intent_plus: ^4.0.1
   app_settings: ^7.0.0
   appstore_info: ^1.1.0
   cupertino_icons: ^1.0.8

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:starving_shopping_flutter_app/code/di/injector.dart';
 
+import 'package:starving_shopping_flutter_app/code/di/injector.dart';
 import 'package:starving_shopping_flutter_app/config/constant/environment.dart';
 import 'package:starving_shopping_flutter_app/presentation/blocs/blocs.dart';
 import 'package:starving_shopping_flutter_app/presentation/screens/main_screen.dart';
@@ -23,11 +23,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
+          BlocProvider(create: (_) => getIt<AlarmPermissionBloc>()),
           BlocProvider(
             create: (_) => getIt<GroceryBloc>()..add(LoadGroceries()),
           ),
+          BlocProvider(create: (_) => getIt<PreferencesBloc>()),
           BlocProvider(create: (_) => getIt<PermissionBloc>()),
-          BlocProvider(create: (_) => getIt<AlarmPermissionBloc>()),
         ],
         child:
             Environment.wantSeeExamples

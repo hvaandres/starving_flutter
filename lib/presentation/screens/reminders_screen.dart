@@ -26,11 +26,13 @@ class _RemindersScreenState extends State<RemindersScreen>
   bool _didButtonClicked = false;
   bool _wasAlarmPermissionDenied = false;
   bool _wasSettingsCalled = false;
+  int _selectedItemIndex = 0;
 
   @override
   void initState() {
     super.initState();
     context.read<PermissionBloc>().add(CheckNotificationPermission());
+    context.read<PreferencesBloc>().add(LoadTimeNotificationPreferences());
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -65,12 +67,28 @@ class _RemindersScreenState extends State<RemindersScreen>
       '6:00 a.m.': Icons.notifications,
       'Custom': Icons.watch_later,
     };
+    final optionKeys = optionIcons.keys.toList();
 
     final permissionState = context.watch<PermissionBloc>().state;
     final alarmPermissionState = context.watch<AlarmPermissionBloc>().state;
+    final preferenceState = context.watch<PreferencesBloc>().state;
     final notificationCanPerform =
         permissionState is PermissionGranted &&
         alarmPermissionState is AlarmPermissionGranted;
+
+    var timeNotification = optionKeys.first;
+    if (preferenceState is TimeNotificationLoaded) {
+      final timeNotificationReaded = preferenceState.timeNotificationValue;
+
+      if (timeNotificationReaded != null && timeNotificationReaded.isNotEmpty) {
+        timeNotification = timeNotificationReaded;
+      }
+    }
+
+    final keyIndex = optionKeys.indexOf(timeNotification);
+    if (keyIndex != -1 && _selectedItemIndex != keyIndex) {
+      _selectedItemIndex = keyIndex;
+    }
 
     return MultiBlocListener(
       listeners: _buildListeners(),
@@ -131,10 +149,14 @@ class _RemindersScreenState extends State<RemindersScreen>
                 textColor: context.primaryContrastColor,
                 backgroundColor: context.backgroundSecondaryColor,
                 iconColor: context.primaryBackgroundColor,
-                // update with bloc when it is implemented
-                itemSelected: 0,
+                itemSelected: _selectedItemIndex,
                 onItemSelected: (index) {
-                  // wip
+                  setState(() {
+                    final timeNotifictionText = optionKeys[index];
+                    context.read<PreferencesBloc>().add(
+                      SaveTimeNotificationPreferences(timeNotifictionText)
+                    );
+                });
                 },
               ),
             if (notificationCanPerform)

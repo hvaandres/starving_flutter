@@ -64,7 +64,7 @@ class _RemindersScreenState extends State<RemindersScreen>
     final Map<String, IconData> optionIcons = {
       '8:00 a.m.': Icons.notifications,
       '12:00 p.m.': Icons.notifications,
-      '6:00 a.m.': Icons.notifications,
+      '6:00 p.m.': Icons.notifications,
       'Custom': Icons.watch_later,
     };
     final optionKeys = optionIcons.keys.toList();
@@ -77,8 +77,10 @@ class _RemindersScreenState extends State<RemindersScreen>
         alarmPermissionState is AlarmPermissionGranted;
 
     var timeNotification = optionKeys.first;
+    var timeNotificationLastUpdated = "";
     if (preferenceState is TimeNotificationLoaded) {
       final timeNotificationReaded = preferenceState.timeNotificationValue;
+      timeNotificationLastUpdated = preferenceState.lastUpdatedValue;
 
       if (timeNotificationReaded != null && timeNotificationReaded.isNotEmpty) {
         timeNotification = timeNotificationReaded;
@@ -163,9 +165,9 @@ class _RemindersScreenState extends State<RemindersScreen>
               DynamicCard(
                 icon: Icons.notifications_active,
                 title: 'Current schedule',
-                subtitle: 'Daily reminder scheduled for 8:00 a.m.',
+                subtitle: 'Daily reminder scheduled for $timeNotification',
                 status: 'Active',
-                description: 'Last modified: 1 second ago',
+                description: 'Last modified: $timeNotificationLastUpdated',
                 iconColor: context.primaryContrastColor,
                 subtitleColor: context.primaryContrastColor,
                 titleColor: context.primaryContrastColor,

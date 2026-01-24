@@ -4,6 +4,10 @@ class TimeNotificationInitial extends TimeNotificationState {}
 
 class TimeNotificationLoaded extends TimeNotificationState {
   final String? timeNotificationValue;
+  final String lastUpdatedValue;
 
-  TimeNotificationLoaded(this.timeNotificationValue);
+  TimeNotificationLoaded(
+    this.timeNotificationValue,
+    this.lastUpdatedValue,
+  );
 }

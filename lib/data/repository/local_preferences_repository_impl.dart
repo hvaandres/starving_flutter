@@ -18,4 +18,14 @@ class LocalPreferencesRepositoryImpl extends LocalPreferencesRepository {
   Future<void> saveTimeNotification(String notificationTime) async {
     await localPreferencesDatasource.saveTimeNotification(notificationTime);
   }
+  
+  @override
+  int? getLastModified() {
+    return localPreferencesDatasource.getLastModified();
+  }
+  
+  @override
+  Future<void> updateLastModified(int lastUpdate) async {
+    await localPreferencesDatasource.updateLastModified(lastUpdate);
+  }
 }

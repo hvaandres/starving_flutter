@@ -17,4 +17,14 @@ class PreferencesDatasource extends LocalPreferencesDatasource {
   Future<void> saveTimeNotification(String notificationTime) async {
     await _sharedPreferences.setString(Constant.notificationTimeKey, notificationTime);
   }
+  
+  @override
+  int? getLastModified() {
+    return _sharedPreferences.getInt(Constant.lastUpdatedKey);
+  }
+  
+  @override
+  Future<void> updateLastModified(int lastUpdate) async {
+    await _sharedPreferences.setInt(Constant.lastUpdatedKey, lastUpdate);
+  }
 }

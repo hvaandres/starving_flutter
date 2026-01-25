@@ -26,11 +26,13 @@ class _RemindersScreenState extends State<RemindersScreen>
   bool _didButtonClicked = false;
   bool _wasAlarmPermissionDenied = false;
   bool _wasSettingsCalled = false;
+  int _selectedItemIndex = 0;
 
   @override
   void initState() {
     super.initState();
     context.read<PermissionBloc>().add(CheckNotificationPermission());
+    context.read<PreferencesBloc>().add(LoadTimeNotificationPreferences());
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -62,15 +64,33 @@ class _RemindersScreenState extends State<RemindersScreen>
     final Map<String, IconData> optionIcons = {
       '8:00 a.m.': Icons.notifications,
       '12:00 p.m.': Icons.notifications,
-      '6:00 a.m.': Icons.notifications,
+      '6:00 p.m.': Icons.notifications,
       'Custom': Icons.watch_later,
     };
+    final optionKeys = optionIcons.keys.toList();
 
     final permissionState = context.watch<PermissionBloc>().state;
     final alarmPermissionState = context.watch<AlarmPermissionBloc>().state;
+    final preferenceState = context.watch<PreferencesBloc>().state;
     final notificationCanPerform =
         permissionState is PermissionGranted &&
         alarmPermissionState is AlarmPermissionGranted;
+
+    var timeNotification = optionKeys.first;
+    var timeNotificationLastUpdated = "";
+    if (preferenceState is TimeNotificationLoaded) {
+      final timeNotificationReaded = preferenceState.timeNotificationValue;
+      timeNotificationLastUpdated = preferenceState.lastUpdatedValue;
+
+      if (timeNotificationReaded != null && timeNotificationReaded.isNotEmpty) {
+        timeNotification = timeNotificationReaded;
+      }
+    }
+
+    final keyIndex = optionKeys.indexOf(timeNotification);
+    if (keyIndex != -1 && _selectedItemIndex != keyIndex) {
+      _selectedItemIndex = keyIndex;
+    }
 
     return MultiBlocListener(
       listeners: _buildListeners(),
@@ -131,19 +151,23 @@ class _RemindersScreenState extends State<RemindersScreen>
                 textColor: context.primaryContrastColor,
                 backgroundColor: context.backgroundSecondaryColor,
                 iconColor: context.primaryBackgroundColor,
-                // update with bloc when it is implemented
-                itemSelected: 0,
+                itemSelected: _selectedItemIndex,
                 onItemSelected: (index) {
-                  // wip
+                  setState(() {
+                    final timeNotifictionText = optionKeys[index];
+                    context.read<PreferencesBloc>().add(
+                      SaveTimeNotificationPreferences(timeNotifictionText)
+                    );
+                });
                 },
               ),
             if (notificationCanPerform)
               DynamicCard(
                 icon: Icons.notifications_active,
                 title: 'Current schedule',
-                subtitle: 'Daily reminder scheduled for 8:00 a.m.',
+                subtitle: 'Daily reminder scheduled for $timeNotification',
                 status: 'Active',
-                description: 'Last modified: 1 second ago',
+                description: 'Last modified: $timeNotificationLastUpdated',
                 iconColor: context.primaryContrastColor,
                 subtitleColor: context.primaryContrastColor,
                 titleColor: context.primaryContrastColor,
